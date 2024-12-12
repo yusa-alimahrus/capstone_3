@@ -1,0 +1,50 @@
+<%- include('../layout') %>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Record Inbound</h2>
+        <form action="/inbound" method="POST">
+            <div class="mb-3">
+                <label class="form-label">Product</label>
+                <select class="form-control" name="product_id" required>
+                    <% products.forEach(function(product) { %>
+                    <option value="<%= product.id %>"><%= product.name %> (<%= product.sku %>)</option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" name="quantity" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Supplier</label>
+                <input type="text" class="form-control" name="supplier" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Record Inbound</button>
+        </form>
+    </div>
+    
+    <div class="col-md-6">
+        <h2>Inbound History</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Supplier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% inbounds.forEach(function(inbound) { %>
+                <tr>
+                    <td><%= inbound.date.toLocaleDateString() %></td>
+                    <td><%= inbound.product_name %></td>
+                    <td><%= inbound.quantity %></td>
+                    <td><%= inbound.supplier %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>

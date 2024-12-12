@@ -1,0 +1,29 @@
+<%- include('layout') %>
+
+<div class="row">
+    <div class="col-12">
+        <h2>Stock Overview</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Product Name</th>
+                    <th>Current Stock</th>
+                    <th>Total In</th>
+                    <th>Total Out</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product) { %>
+                <tr>
+                    <td><%= product.sku %></td>
+                    <td><%= product.name %></td>
+                    <td><%= product.stock %></td>
+                    <td><%= product.total_in || 0 %></td>
+                    <td><%= product.total_out || 0 %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
